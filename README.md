@@ -87,3 +87,23 @@ dialog --create-rc ~/.dialogrc
 
 <a href="https://asciinema.org/a/PQMuRvfmxlHUc4oZMN76LY2V4">See how it works at asciinema</a></br>
 
+## Installing
+
+For Linux/WSL:
+
+```shell
+curl https://raw.githubusercontent.com/kapitanov/sshto/no-menu-loop/sshto > sshto &&\
+chmod +x sshto &&\
+sudo mv sshto /usr/local/bin/
+```
+
+For Windows (with WSL):
+
+1. Run commands above
+2. Add the following to your powershell profile:
+
+   ```
+   function sshto() {
+       wsl sshto $args
+   }
+   ```
