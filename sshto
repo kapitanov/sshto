@@ -155,7 +155,7 @@ add_sshkey () { clear; ssh_yes $target > /dev/null; ssh-copy-id $target; }
 portunneling () { ssh $target -f -L 127.0.0.1:$LOCAL:127.0.0.1:$REMOTE sleep $timer; }
 
 #------------------------{ Exit function }---------------------------------------------------------
-bye () { clear; [[ $(uname -s) == "Darwin" ]] && ls -G || ls --color=auto; exit 0; }; trap bye INT
+bye () { clear; }; trap bye INT
 
 
 #------------------------------{ Dialog functions }------------------------------------------------
@@ -241,7 +241,7 @@ first_dialog () {
 					--menu "Select host to connect to:" 0 0 0 "${list[@]}")
 	case $target:$? in
        -*\ *\ *-:*) first_dialog ;;
-               *:0) go_to_target  ; first_dialog;;
+               *:0) go_to_target  ; bye;;
                *:2) contents_menu;;
       	       *:3) second_dialog;;
       	       *:*) bye;;
@@ -294,4 +294,3 @@ list=( "${fullist[@]}" )
 
 #--{ Go baby, GO!) }--
 first_dialog; bye
-
